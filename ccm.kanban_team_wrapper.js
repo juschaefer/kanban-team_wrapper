@@ -14,61 +14,7 @@
         ccm: 'https://ccmjs.github.io/ccm/versions/ccm-18.2.0.js',
 
         config: {
-            menu: ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js', //{
-                // "css": [ "ccm.load", "https://ccmjs.github.io/akless-components/menu/resources/tabs.css" ],
-                // "data": {
-                //     "entries": [
-                //         {
-                //             "title": "Menu Item A",
-                //             "content": "Content of menu entry A",
-                //             "actions": [ [ "fun", "foo" ], [ "fun", "bar" ] ]
-                //         },
-                //         {
-                //             "title": "Menu Item B",
-                //             "content": "Content of menu entry B",
-                //             "actions": [ [ "alert", "Performed action of menu entry B." ] ]
-                //         },
-                //         {
-                //             "title": "Menu Item C",
-                //             "content": "Content of menu entry C",
-                //             "actions": [ [ "console.log", "Performed action of menu entry C." ] ]
-                //         }
-                //     ]
-                // }
-                // "key": "local",
-                // "css": [ "ccm.load", "../../akless-components/menu/resources/tabs.css" ],
-                // "data": {
-                //     "store": [ "ccm.store", "../../akless-components/menu/resources/datasets.js" ],
-                //     "key": "demo"
-                // },
-                // "logger": [ "ccm.instance", "../log/ccm.log.js", [ "ccm.get", "../log/resources/configs.js", "greedy" ] ]
-            //}],
-            //     [ "ccm.get", "resources/configs.js", "menu" ]
-                {
-                    "css": [ "ccm.load", "../../akless-components/menu/resources/tabs.css" ],
-                    "data": {
-                        "entries": [
-                            {
-                                "title": "Menu Item A",
-                                "content": "Content of menu entry A",
-                                "actions": [ [ "console.log", "Performed action of menu entry A." ] ]
-                            },
-                            {
-                                "title": "Menu Item B",
-                                "content": "Content of menu entry B",
-                                "actions": [ [ "console.log", "Performed action of menu entry B." ] ]
-                            },
-                            {
-                                "title": "Menu Item C",
-                                "content": "Content of menu entry C",
-                                "actions": [ [ "console.log", "Performed action of menu entry C." ] ]
-                            }
-                        ]
-                        // "store": [ "ccm.store", "resources/datasets.js" ],
-                        // "key": "demo"
-                    },
-                }
-                ],
+            menu: ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
 
             html: {
                 "test": ["ccm.load", 'resources/tpl.wrapper.html']
@@ -120,9 +66,29 @@
 
             this.start = async () => {
 
-                // this.element.innerHTML = 'Hello, World!';
-                $.setContent(self.element, $.html(self.menu));
-                // $.setContent(self.element, $.html(self.html.test));
+                const inst_menu = await self.menu.start( {
+                    "css": [ "ccm.load", "../../akless-components/menu/resources/tabs.css" ],
+                    "data": {
+                        "entries": [
+                            {
+                                "title": "Menu Item A",
+                                "content": "Content of menu entry A",
+                                "actions": [ [ "console.log", "Performed action of menu entry A." ] ]
+                            },
+                            {
+                                "title": "Menu Item B",
+                                "content": "Content of menu entry B",
+                                "actions": [ [ "console.log", "Performed action of menu entry B." ] ]
+                            },
+                            {
+                                "title": "Menu Item C",
+                                "content": "Content of menu entry C",
+                                "actions": [ [ "console.log", "Performed action of menu entry C." ] ]
+                            }
+                        ]
+                    } });
+
+                $.setContent(self.element, inst_menu.root);
 
             };
 
