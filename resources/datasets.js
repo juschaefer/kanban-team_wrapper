@@ -25,4 +25,32 @@ ccm.files[ 'datasets.js' ] = {
             "actions": [ [ "console.log", "Performed action of menu entry C." ] ]
         }
     ]
-}};
+},
+"teambuild_data": {
+    // "_id": "teambuild_data",
+    "teams": [
+        {
+            "key": "1536394214965X9312468445512434",
+            "members": {
+                "john": true,
+                "mkaul": true,
+                "test": true
+            }
+        },
+        {
+            "key": "1541598607325X727841449552181",
+            "members": {
+                "akless": true,
+                "jane": true
+            }
+        },
+        {
+            "key": "1547300773593X5909761414733548",
+            "members": {}
+        }
+        ]
+    // ],
+    // "updated_at": "2019-01-12T14:46:14+01:00",
+    // "created_at": "2018-09-08T10:10:16+02:00",
+}
+};
