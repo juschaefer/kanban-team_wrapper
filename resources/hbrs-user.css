@@ -1,0 +1,34 @@
+/**
+ * @overview tab layout of ccm component for rendering a menu
+ * @author Julian Schäfer <Julian.Schaefer@smil.inf.h-brs.de> 2019
+ * @license The MIT License (MIT)
+ */
+
+#logged_in,
+#logged_out {
+    display: inline-flex;
+    align-items: flex-end;
+}
+
+#logged_in #button {
+    margin-left: 0.5em;
+}
+
+.glyphicon {
+    margin-right: 0.4em;
+}
+
+#login-form #loginbox {
+    margin-top: 50px;
+}
+#login-form .panel-body {
+    padding-top: 30px
+}
+
+#login-form .input-group {
+    margin-bottom: 25px;
+}
+
+#btn-abort {
+    float: right;
+}
