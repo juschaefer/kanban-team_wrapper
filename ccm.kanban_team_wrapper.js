@@ -11,91 +11,41 @@
         name: 'kanban-team-wrapper',
 
         config: {
-            user: [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", [ "ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul" ] ],
-            menu: ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
-            teambuild: ['ccm.component', '../../akless-components/teambuild/ccm.teambuild.js'],
-            kanban: ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
 
-            html: {
+            "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
+            "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
+            "teambuild": ['ccm.component', '../../akless-components/teambuild/ccm.teambuild.js'],
+            "kanban": ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+
+            "html": {
                 "main": ["ccm.load", 'resources/tpl.wrapper.html']
-            }
+            },
+
+            "bootstrap": [ "ccm.load", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css",
+                { "context": "head", "url": "https://ccmjs.github.io/tkless-components/libs/bootstrap/css/font-face.css" },
+                "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
+                "../kanban_team_wrapper/resources/hbrs.css"
+            ],
+
+            // "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs.cssss"]
+
         },
-
-        "jquery": [
-            "ccm.load", {
-                "url": "https://code.jquery.com/jquery-3.3.1.slim.min.js",
-                "integrity": "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
-                "crossorigin": "anonymous"
-            }
-        ],
-
-        "propper": [
-            "ccm.load", {
-                "url": "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-                "integrity": "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49",
-                "crossorigin": "anonymous"
-            }
-        ],
-
-        "bootstrap": [
-            "ccm.load", {
-                "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
-                "integrity": "sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em",
-                "crossorigin": "anonymous"
-            }, {
-                "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css",
-                "integrity": "sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B",
-                "crossorigin": "anonymous"
-            }
-        ],
-
-        // "jquery": [
-        //     "ccm.load", {
-        //         "url": "https://code.jquery.com/jquery-3.3.1.slim.min.js",
-        //         "integrity": "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
-        //         "crossorigin": "anonymous"
-        //     }
-        // ],
-        //
-        // "propper": [
-        //     "ccm.load", {
-        //         "url": "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js",
-        //         "integrity": "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49",
-        //         "crossorigin": "anonymous"
-        //     }
-        // ],
-        //
-        // "bootstrap_css": [
-        //     "ccm.load", {
-        //         "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
-        //         "integrity": "sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em",
-        //         "crossorigin": "anonymous"
-        //     }
-        //     // }, {
-        //     //     "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css",
-        //     //     "integrity": "sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B",
-        //     //     "crossorigin": "anonymous"
-        //     // }
-        // ],
-        //
-        // "bootstrap_js‚": [
-        //     "ccm.load", {
-        //     //     "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
-        //     //     "integrity": "sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em",
-        //     //     "crossorigin": "anonymous"
-        //     // }, {
-        //         "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css",
-        //         "integrity": "sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B",
-        //         "crossorigin": "anonymous"
-        //     }
-        // ],
 
         // ccm: 'https://ccmjs.github.io/ccm/ccm.js',
         ccm: 'https://ccmjs.github.io/ccm/versions/ccm-18.2.0.js',
 
         Instance: function () {
 
+            /**
+             * shortcut to help functions
+             * @type {Object.<string,function>}
+             */
             let $;
+
+            /**
+             * own reference for inner functions
+             * @type {Instance}
+             */
             const self = this;
 
             this.init = async () => {
@@ -110,15 +60,15 @@
                 // login user, if not logged in
                 await this.user.login();
 
-                const inst_teambuild = await  self.teambuild.start({
+                const inst_teambuild = await self.teambuild.start({
                     "localhost": {
                         "key": "localhost",
-                        "css": [ "ccm.load", "../../akless-components/teambuild/resources/default.css" ],
+                        "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-user.css"],
                         "data": {
-                            "store": [ "ccm.store", "../kanban_team_board/resources/datasets.js" ],
+                            "store": ["ccm.store", "../kanban_team_board/resources/datasets.js"],
                             "key": "teambuild_data"
                         },
-                        "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", [ "ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul" ] ],
+                        "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
                         // "logger": [ "ccm.instance", "../log/ccm.log.js", [ "ccm.get", "../log/resources/configs.js", "greedy" ] ]
                     },
                 });
@@ -127,18 +77,20 @@
                     "key": "local",
                     "css.1": "../kanban_team_board/resources/default.css",
                     "data": {
-                        "store": [ "ccm.store", "../kanban_team_board/resources/datasets.js" ],
+                        "store": ["ccm.store", "../kanban_team_board/resources/datasets.js"],
                         "key": "test"
                     },
                     //"logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", [ "ccm.get", "../../akless-components/log/resources/configs.js", "greedy" ] ],
-                    "onchange": function ( event ) { console.log( this.index, 'onchange', this.getValue(), event ) },
+                    "onchange": function (event) {
+                        console.log(this.index, 'onchange', this.getValue(), event)
+                    },
                     "ignore": {
                         "card": {
                             "component": "../kanban_team_card/ccm.kanban_team_card.js",
                             "config": {
                                 "css.1": "../kanban_team_card/resources/default.css",
                                 "data": {
-                                    "store": [ "ccm.store" ]
+                                    "store": ["ccm.store"]
                                 },
                                 "icon": {
                                     "owner": "../kanban_team_card/resources/owner.svg",
@@ -177,7 +129,6 @@
             };
 
         }
-        // }
 
     };
 
