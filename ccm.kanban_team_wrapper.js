@@ -12,22 +12,29 @@
 
         config: {
 
-            "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
-            "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
-            "teambuild": ['ccm.component', '../../akless-components/teambuild/ccm.teambuild.js'],
-            "kanban": ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+            user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
+            menu: ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
+            teambuild: ['ccm.component', '../../akless-components/teambuild/ccm.teambuild.js'],
+            kanban: ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
 
-            "html": {
+            html: {
                 "main": ["ccm.load", 'resources/tpl.wrapper.html']
             },
 
-            "bootstrap": [ "ccm.load", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css",
-                { "context": "head", "url": "https://ccmjs.github.io/tkless-components/libs/bootstrap/css/font-face.css" },
-                "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
+            bootstrap: ["ccm.load", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css",
+                {
+                    "context": "head",
+                    "url": "https://ccmjs.github.io/tkless-components/libs/bootstrap/css/font-face.css"
+                },
+                // "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js",
                 "../kanban_team_wrapper/resources/hbrs.css"
             ],
 
-            // "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs.cssss"]
+            // css: ["ccm.load", {
+            //     "context": "head",
+            //     "url": "../kanban_team_wrapper/resources/hbrs.css"
+            // }]
+            // "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs.css"]
 
         },
 
@@ -60,49 +67,75 @@
                 // login user, if not logged in
                 await this.user.login();
 
+                const data_server = "http://192.168.99.101:8080";
+
                 const inst_teambuild = await self.teambuild.start({
-                    "localhost": {
-                        "key": "localhost",
-                        "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-user.css"],
-                        "data": {
-                            "store": ["ccm.store", "../kanban_team_board/resources/datasets.js"],
-                            "key": "teambuild_data"
-                        },
-                        "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
-                        // "logger": [ "ccm.instance", "../log/ccm.log.js", [ "ccm.get", "../log/resources/configs.js", "greedy" ] ]
+                    "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-teambuild.css"],
+                    "data": {
+                        "store": ["ccm.store", {"name": "teams", "url": data_server}],
+                        "key": "sose_19"
                     },
+                    "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
+                    // "logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", [ "ccm.get", "../kanban_team_wrapper/resources/configs.js", "teambuild_log" ] ]
                 });
 
+                console.log("Teambuild", inst_teambuild.data.store.set);
+
                 const inst_kanban = await self.kanban.start({
-                    "key": "local",
-                    "css.1": "../kanban_team_board/resources/default.css",
+                    "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-board.css"],
                     "data": {
-                        "store": ["ccm.store", "../kanban_team_board/resources/datasets.js"],
-                        "key": "test"
+                        "store": ["ccm.store", {"name": "kanban_team_borad", "url": data_server}],
+                        "key": "sose_19"
                     },
                     //"logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", [ "ccm.get", "../../akless-components/log/resources/configs.js", "greedy" ] ],
-                    "onchange": function (event) {
-                        console.log(this.index, 'onchange', this.getValue(), event)
-                    },
+                    // "onchange": function (event) {
+                    //     console.log(this.index, 'onchange', this.getValue(), event)
+                    // },
                     "ignore": {
                         "card": {
                             "component": "../kanban_team_card/ccm.kanban_team_card.js",
                             "config": {
-                                "css.1": "../kanban_team_card/resources/default.css",
+                                // "css.1": "../kanban_team_wrapper/resources/hbrs-kanban-team-card.css",
                                 "data": {
-                                    "store": ["ccm.store"]
+                                    "store": [ "ccm.store", { "name": "kanban_team_cards", "url": "http://192.168.99.101:8080" } ],
+                                    "key": "sose_19"
                                 },
-                                "icon": {
-                                    "owner": "../kanban_team_card/resources/owner.svg",
-                                    "deadline": "../kanban_team_card/resources/deadline.svg"
-                                }
+                                // "data": {
+                                //     "store": ["ccm.store"]
+                                // },
+                                "members": [  ],
+                                "priorities": [ "High", "Medium", "Low" ],
+                                // "icon": {
+                                //     "owner": "../kanban_team_card/resourcess/owner.svg",
+                                //     "deadline": "../kanban_team_card/resourcess/deadline.svg"
+                                // }
                             }
                         }
                     }
+                    // "card": {
+                    //     "component": "../kanban_team_card/ccm.kanban_team_card.js",
+                    //     // "config": {
+                    //     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-card.css"],
+                    //     // "data": {
+                    //     //     "store": ["ccm.store", {"name": "kanban_team_cards", "url": "http://192.168.99.101:8080"}],
+                    //     //     "key": "sose_19"
+                    //     // },
+                    //     // "data": {
+                    //     //     "store": [ "ccm.store", { "store": "kanban_card", "url": "wss://ccm.inf.h-brs.de" } ],
+                    //     //     "group": Object.keys( my_team.members ).reduce( ( access,key ) => {
+                    //     //         access[ key ] = true; return access; }, {}),
+                    //     //     "permission_settings": { "get": "all", "set": "group" }
+                    //     // },
+                    //     // "members": Object.keys( my_team.members ),
+                    //     "members": ["Tik", "Trik", "Trak"],
+                    //     "priorities": ["Very High", "High", "Middle", "Low", "Very Low"],
+                    //     // logger: [ 'ccm.instance', 'https://akless.github.io/ccm-components/log/versions/ccm.log-1.0.0.min.js', [ 'ccm.get', 'https://kaul.inf.h-brs.de/data/2018/se1/json/log_configs.js', 'se_ws18_kanban_card' ] ]
+                    //     // }
+                    // }
                 });
 
                 const inst_menu = await self.menu.start({
-                    "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-tabs.css"],
+                    "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-menu.css"],
                     "data": {
                         "entries": [
                             {

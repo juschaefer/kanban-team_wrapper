@@ -45,6 +45,66 @@ ccm.files['configs.js'] = {
         }
     },
 
+    "vm": {
+        "key": "vm",
+        "css": "../kanban_team_wrapper/resources/hbrs.css",
+        // "data": {
+        //     "store": [
+        //         "ccm.store", {
+        //             "name": "kanban_team_wrapper",
+        //             "url": "http://192.168.99.101:8080"
+        //         }],
+        //     "key": "kanban_team_wrapper"
+        // }
+    },
+
+    "teambuild_log": {
+        // "se_ws17_teambuild": {  // created for ccm.log-1.0.0.js, ccm.teambuild-1.0.0.js, ccm.user-2.0.0.js
+            "key": "teambuild_log",
+            "events": {
+                "ready": {
+                    "browser": true,
+                    "user": true,
+                    "website": true
+                },
+                "start": {
+                    "data": true,
+                    "user": true
+                },
+                "join": {
+                    "data": true,
+                    "user": true
+                },
+                "leave": {
+                    "data": true,
+                    "user": true
+                },
+                "rename": {
+                    "data": true,
+                    "user": true
+                }
+            },
+            "hash": [ "ccm.load", "https://ccmjs.github.io/akless-components/libs/md5/md5.js" ],
+            "onfinish": {
+                "store_settings": { "store": "teambuild_log", "url": "http://192.168.99.101:8080" },
+                "permissions": {
+                    // "creator": "akless2m",
+                    "creator": "jschae2s",
+                    "group": {
+                        "mkaul2m": true,
+                        "akless2m": true,
+                        "jschae2s": true
+                    },
+                    "access": {
+                        "get": "group",
+                        "set": "creator",
+                        "del": "creator"
+                    }
+                }
+            }
+        // }
+    }
+
     // "menu": {
     //     "key": "menu",
     //     "css": [ "ccm.load", "../../../akless-components/menu/resources/tabs.css" ],
