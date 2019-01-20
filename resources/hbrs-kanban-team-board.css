@@ -1,0 +1,48 @@
+#element {
+    overflow-x: auto;
+}
+
+#lanes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.lane {
+    padding: 0.2em;
+    width: 20em;
+}
+
+.lane .title {
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5em;
+    overflow-x: auto;
+}
+
+.cards {
+    border-top: 0.1em solid black;
+    padding: 0.5em;
+}
+
+.lane #add {
+    margin: 0 1em;
+    padding: 0.5em;
+    background-color: lightgray;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.lane #add:hover {
+    background-color: gray;
+}
+
+.lane #add:before {
+    content: '+';
+}
+
+[draggable=true] {
+    cursor: move;
+}
