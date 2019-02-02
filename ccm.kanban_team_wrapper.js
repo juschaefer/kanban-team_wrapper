@@ -6,16 +6,38 @@
 
 (function () {
 
+    /**
+     * defining the data-server for storing data
+     * @type {string}
+     */
+    const DATA_SERVER = "http://192.168.99.101:8080";
+
+    /**
+     * projectname for prefixing data
+     * @type {string}
+     */
+    const PROJECT = "sose_19";
+
     const component = {
 
         name: 'kanban-team-wrapper',
 
         config: {
 
-            user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
+            // user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
+            // user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "guest"]],
+            user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
+                "realm": "guest",
+                "guest": "jschae2s",
+                "title": "Guest Mode: Please enter any username"
+            }],
             menu: ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
             teambuild: ['ccm.component', '../../akless-components/teambuild/ccm.teambuild.js'],
             kanban: ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+
+            teambuild_store: ['ccm.store',  { "name": "teambuild", "url": DATA_SERVER, "key": PROJECT }],
+            kanban_board_store: ['ccm.store', { "name": "kanban_team_borad", "url": DATA_SERVER, "key": PROJECT }],
+            kanban_card_store: ['ccm.store', { "name": "kanban_team_cards", "url": DATA_SERVER }],
 
             html: {
                 "main": ["ccm.load", 'resources/tpl.wrapper.html']
@@ -58,38 +80,62 @@
             this.init = async () => {
 
                 // set shortcut to help functions
-                $ = this.ccm.helper;
+                $ = self.ccm.helper;
 
             };
 
             this.start = async () => {
 
                 // login user, if not logged in
-                await this.user.login();
+                await self.user.login();
 
-                const data_server = "http://192.168.99.101:8080";
+                // console.log("store", await self.teambuild_store.get(PROJECT));
 
+                /**
+                 * instance for teambuild component
+                 */
                 const inst_teambuild = await self.teambuild.start({
                     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-teambuild.css"],
+                    // "data": {
+                    //     "store": ["ccm.store", {"name": "teambuild", "url": DATA_SERVER}],
+                    //     "key": PROJECT
+                    // },
                     "data": {
-                        "store": ["ccm.store", {"name": "teams", "url": data_server}],
-                        "key": "sose_19"
+                        "store": self.teambuild_store,
+                        "key": PROJECT
                     },
-                    "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
+                    "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
+                        "realm": "guest",
+                        "guest": "jschae2s",
+                        "title": "Guest Mode: Please enter any username"
+                    }],
                     // "logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", [ "ccm.get", "../kanban_team_wrapper/resources/configs.js", "teambuild_log" ] ]
+                    "onchange": function ( event ) { console.log("TEAMBUILD CHANGED"); },
+                    editable: {
+                        join: true,		// kann beitreten
+                        leave: false,	// aber nicht verlassen
+                        rename: false	// Teamname ist nicht editierbar
+                    }
                 });
 
-                console.log("Teambuild", inst_teambuild.data.store.set);
+                const members = await getMembers(self.user.data().user);
 
+                /**
+                 * instance for kanban-board component
+                 */
                 const inst_kanban = await self.kanban.start({
                     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-board.css"],
+                    // "css": ["ccm.load", "https://akless.github.io/ccm-components/kanban_card/resources/weblysleek.css"],
                     "data": {
-                        "store": ["ccm.store", {"name": "kanban_team_borad", "url": data_server}],
-                        "key": "sose_19"
+                        "store": self.kanban_board_store,
+                        "key": PROJECT,
+                        // "team": "Team X",
                     },
+                    "members": members,
+                    "lanes": ["ToDo", "Doing", "Done"],
                     //"logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", [ "ccm.get", "../../akless-components/log/resources/configs.js", "greedy" ] ],
                     // "onchange": function (event) {
-                    //     console.log(this.index, 'onchange', this.getValue(), event)
+                    //     console.log(self.index, 'onchange', self.getValue(), event)
                     // },
                     "ignore": {
                         "card": {
@@ -97,14 +143,25 @@
                             "config": {
                                 // "css.1": "../kanban_team_wrapper/resources/hbrs-kanban-team-card.css",
                                 "data": {
-                                    "store": [ "ccm.store", { "name": "kanban_team_cards", "url": "http://192.168.99.101:8080" } ],
-                                    "key": "sose_19"
+                                    "store": ['ccm.store', { "name": "kanban_team_cards", "url": DATA_SERVER }],
+                                    // "store": self.kanban_card_store,
+                                    "key": PROJECT
                                 },
                                 // "data": {
                                 //     "store": ["ccm.store"]
                                 // },
-                                "members": [  ],
-                                "priorities": [ "High", "Medium", "Low" ],
+                                //"members":  await getMembers(self.user.data().user) ,
+                                // "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
+                                //     "realm": "guest",
+                                //     "guest": "jschae2s",
+                                //     "title": "Guest Mode: Please enter any username"
+                                // }],
+                                "members": members,
+                                // "members": ["cmann2s",
+                                //     "jschae2s",
+                                //     "lmue2s"],
+                                // "members": ["Test"],
+                                "priorities": [ "High", "Medium", "Low", "Lowest" ],
                                 // "icon": {
                                 //     "owner": "../kanban_team_card/resourcess/owner.svg",
                                 //     "deadline": "../kanban_team_card/resourcess/deadline.svg"
@@ -118,7 +175,7 @@
                     //     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-card.css"],
                     //     // "data": {
                     //     //     "store": ["ccm.store", {"name": "kanban_team_cards", "url": "http://192.168.99.101:8080"}],
-                    //     //     "key": "sose_19"
+                    //     //     "key": PROJECT
                     //     // },
                     //     // "data": {
                     //     //     "store": [ "ccm.store", { "store": "kanban_card", "url": "wss://ccm.inf.h-brs.de" } ],
@@ -134,7 +191,7 @@
                     // }
                 });
 
-                const inst_menu = await self.menu.start({
+                const INST_MENU = await self.menu.start({
                     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-menu.css"],
                     "data": {
                         "entries": [
@@ -149,15 +206,42 @@
                                 // "actions": [ [ "console.log", "Performed action of menu entry B." ] ]
                             }
                         ]
-                    }
+                    },
+                    "selected": selected = members.length > 0 ? 2 : 1
                 });
 
+                // adds main html structure
                 $.setContent(self.element, $.html(self.html.main));
 
+                // adding user component to content
                 $.setContent(self.element.querySelector('#user'), self.user.root);
 
                 const nav = self.element.querySelector('nav');
-                $.setContent(nav, inst_menu.root);
+                $.setContent(nav, INST_MENU.root);
+
+            };
+
+            /**
+             * Returns all Group-Members from own team
+             * @param user
+             * @returns {Promise<Array>}
+             */
+            async function getMembers(user) {
+
+                let users = [];
+
+                const data = await self.teambuild_store.get(PROJECT);
+
+                data['teams'].forEach((group, index, data_teamstore) => {
+                    if (group.members.hasOwnProperty(user)) {
+                        users = Object.keys(group.members).map((key) => {
+                            return key;
+                        });
+                        // users = group.members;
+                    }
+                });
+
+                return users;
 
             };
 

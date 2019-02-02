@@ -13,3 +13,20 @@ html, body, #element {
     color: #192429;
     /*color: #475054;*/
 }
+
+.card {
+    margin: 0 0.25em 1.75em 0.25em;
+}
+
+.no_border {
+    border: 0;
+    box-shadow: none;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    text-align: left;
+}

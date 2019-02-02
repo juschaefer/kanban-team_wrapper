@@ -1,0 +1,13 @@
+{
+    "lanes": [
+    {
+        "cards": [
+            {
+                "title": "Homework",
+                "owner": "John",
+                "summary": "Very important homework.",
+                "priority": "A",
+                "deadline": "2017-03-15"
+            }]
+    }]
+}
