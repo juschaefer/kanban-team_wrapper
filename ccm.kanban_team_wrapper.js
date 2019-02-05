@@ -109,8 +109,50 @@
                         "guest": "jschae2s",
                         "title": "Guest Mode: Please enter any username"
                     }],
-                    // "logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", [ "ccm.get", "../kanban_team_wrapper/resources/configs.js", "teambuild_log" ] ]
-                    "onchange": function ( event ) { console.log("TEAMBUILD CHANGED"); },
+                    // "logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", {
+                    //         "key": "sose_19_teambuild",
+                    //         "events": {
+                    //             "ready": {
+                    //                 "browser": true,
+                    //                 "user": true,
+                    //                 "website": true
+                    //             },
+                    //             "start": {
+                    //                 "data": true,
+                    //                 "user": true
+                    //             },
+                    //             "join": {
+                    //                 "data": true,
+                    //                 "user": true
+                    //             },
+                    //             "leave": {
+                    //                 "data": true,
+                    //                 "user": true
+                    //             },
+                    //             "rename": {
+                    //                 "data": true,
+                    //                 "user": true
+                    //             }
+                    //         },
+                    //         "hash": [ "ccm.load", "https://ccmjs.github.io/akless-components/libs/md5/md5.js" ],
+                    //         "onfinish": {
+                    //             "store_settings": { "store": "teambuild_log", "url": DATA_SERVER },
+                    //             "permissions": {
+                    //                 "creator": "jschae2s",
+                    //                 "group": {
+                    //                     "jschae2s": true
+                    //                     // "mkaul2m": true,
+                    //                     // "akless2m": true
+                    //                 },
+                    //                 "access": {
+                    //                     "get": "group",
+                    //                     "set": "creator",
+                    //                     "del": "creator"
+                    //                 }
+                    //             }
+                    //         }
+                    // } ],
+                    // "onchange": function ( event ) { console.log("TEAMBUILD CHANGED", event); },
                     editable: {
                         join: true,		// kann beitreten
                         leave: false,	// aber nicht verlassen
