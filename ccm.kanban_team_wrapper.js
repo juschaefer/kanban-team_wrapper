@@ -11,10 +11,7 @@
      * @type {string}
      */
     const DATA_SERVER = "http://192.168.99.101:8080";
-    const LOG_NAME = "kanban_team_log";
-
-    // const PROJECT = "jschae2s_sose_19";
-    const PROJECT = "sose_19";
+    const LOG_NAME = "jschae2s_kanban_team_log";
 
     const component = {
 
@@ -22,24 +19,19 @@
 
         config: {
 
-            // user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "hbrsinfkaul"]],
-            // user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", ["ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "guest"]],
-            user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
-                "realm": "guest",
-                "guest": "sschae2s",
-                "title": "Guest Mode: Please enter any username"
-            }],
-            // project: "kanban_team",
-            project: PROJECT,
-            data_server: DATA_SERVER,
+            user: ["ccm.instance", "https://ccmjs.github.io/akless-components/user/ccm.user.js"],
 
-            menu: ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
-            teambuild: ['ccm.component', '../../akless-components/teambuild/ccm.teambuild.js'],
-            kanban: ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+            project: "",
+            data_server: "https://localhost/",
 
-            teambuild_store: ['ccm.store', {"name": "teambuild", "url": DATA_SERVER, "key": PROJECT}],
-            kanban_board_store: ['ccm.store', {"name": "kanban_team_borad", "url": DATA_SERVER, "key": PROJECT}],
-            kanban_card_store: ['ccm.store', {"name": "kanban_team_cards", "url": DATA_SERVER}],
+            "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/ccm.menu.js'],
+            "teambuild": ['ccm.component', 'https://ccmjs.github.io/akless-components/teambuild/ccm.teambuild.js'],
+            "kanban": ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+            "comments": ['ccm.component', 'https://ccmjs.github.io/tkless-components/comment/ccm.comment.js'],
+
+            teambuild_store: {},
+            kanban_board_store: {},
+            kanban_card_store: {},
 
             html: {
                 "main": ["ccm.load", 'resources/tpl.wrapper.html']
@@ -169,7 +161,7 @@
                     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-teambuild.css"],
                     "data": {
                         "store": self.teambuild_store,
-                        "key": PROJECT
+                        "key": self.project
                     },
                     "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
                         "realm": "guest",
@@ -219,11 +211,11 @@
                     "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-board.css"],
                     "data": {
                         "store": self.kanban_board_store,
-                        "key": PROJECT + "_" + await getTeamID(self.user.data().user)
+                        "key": self.project + "_" + await getTeamID(self.user.data().user)
                     },
                     "team_store": {
                         "store": self.teambuild_store,
-                        "key": PROJECT
+                        "key": self.project
                     },
                     "card_store": {
                         "store": self.kanban_card_store
@@ -232,12 +224,15 @@
                     "lanes": ["ToDo", "Doing", "Done"],
                     "members": TEAM,
                     "ignore": {
+                        // "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-card.css"],
+                        // "css": ["ccm.load", "../kanban_team_wrapper/resources/hbrs-kanban-team-card.css"],
                         "card": {
                             "component": "../kanban_team_card/ccm.kanban_team_card.js",
                             "config": {
                                 "data": {
-                                    "store": self.kanban_card_store,
-                                    "key": PROJECT
+                                    // "store": self.kanban_card_store,
+                                    "store": ['ccm.store', { "name": "jschae2s_kanban_team_cards", "url": DATA_SERVER }],
+                                    "key": self.project
                                 },
                                 "members": TEAM,
                                 "priorities": ["High", "Medium", "Low", "Lowest"],
@@ -317,6 +312,76 @@
                 const nav = self.element.querySelector('nav');
                 $.setContent(nav, INST_MENU.root);
 
+                const chat = await self.comments.start({
+                    "chat": true,
+                    "template": "simple",
+                    "user": [
+                        "ccm.instance",
+                        "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js",
+                        {
+                            "key": "button",
+                            "realm": "guest",
+                            "title": "Guest Mode: Please enter any username",
+                            "html.logged_in": {
+                                "id": "logged_in",
+                                "class": "row",
+                                "style": "float:none",
+                                "inner": {
+                                    "id": "button",
+                                    "class": "btn btn-default",
+                                    "inner": [
+                                        {
+                                            "tag": "span",
+                                            "id": "user",
+                                            "inner": [
+                                                {
+                                                    "class": "glyphicon glyphicon-user"
+                                                },
+                                                "%user%&#8196;"
+                                            ]
+                                        },
+                                        {
+                                            "tag": "span",
+                                            "class": "glyphicon glyphicon-log-out"
+                                        },
+                                        "Logout"
+                                    ],
+                                    "onclick": "%click%"
+                                }
+                            },
+                            "html.logged_out": {
+                                "id": "logged_out",
+                                "style": "float:none",
+                                "inner": {
+                                    "id": "button",
+                                    "class": "btn btn-default",
+                                    "inner": [
+                                        {
+                                            "tag": "span",
+                                            "class": "glyphicon glyphicon-log-in"
+                                        },
+                                        "Login"
+                                    ],
+                                    "onclick": "%click%"
+                                }
+                            }
+                        }
+                    ],
+                    "data": {
+                        "store": [
+                            "ccm.store",
+                            {
+                                "name": "jschae2s_chat_data",
+                                "url": DATA_SERVER
+                            }
+                        ],
+                        "key": self.project
+                        // "key": "1550423630626X27889468838847464"
+                    }
+                });
+
+                $.setContent(self.element.querySelector("#chat"), chat.root);
+
             };
 
             /**
@@ -329,7 +394,7 @@
                 // console.log("teambuild_store", self.teambuild_store);
 
                 // Get Teamstore data
-                const team_data = (await self.teambuild_store.get({"_id": PROJECT}))[0];
+                const team_data = (await self.teambuild_store.get({"_id": self.project}))[0];
                 // const team_data = (await self.teambuild_store.get())[0];
 
                 // console.log("team_data", team_data);
@@ -359,7 +424,7 @@
 
                 let users = [];
 
-                const data = await self.teambuild_store.get(PROJECT);
+                const data = await self.teambuild_store.get(self.project);
 
                 if (data !== null) {
                     data['teams'].forEach((group, index, data_teamstore) => {
