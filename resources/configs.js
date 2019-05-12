@@ -34,7 +34,7 @@ ccm.files['configs.js'] = {
         }],
         "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
         "teambuild": ['ccm.component', 'https://ccmjs.github.io/akless-components/teambuild/versions/ccm.teambuild-3.0.0.js'],
-        "kanban": ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+        "kanban": ['ccm.component', 'https://ccmjs.github.io/akless-components/kanban_board/ccm.kanban_board.js'],
         "comments": ['ccm.component', 'https://ccmjs.github.io/tkless-components/comment/versions/ccm.comment-4.1.0.js'],
 
         "teambuild_store": ['ccm.store', {"name": "jschae2s_teambuild", "url": LOCAL_DATA_SERVER}],
@@ -97,7 +97,7 @@ ccm.files['configs.js'] = {
         }],
         "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
         "teambuild": ['ccm.component', 'https://ccmjs.github.io/akless-components/teambuild/versions/ccm.teambuild-3.0.0.js'],
-        "kanban": ['ccm.component', '../kanban_team_board/ccm.kanban_team_board.js'],
+        "kanban": ['ccm.component', 'https://ccmjs.github.io/akless-components/kanban_board/ccm.kanban_board.js'],
         "comments": ['ccm.component', 'https://ccmjs.github.io/tkless-components/comment/versions/ccm.comment-4.1.0.js'],
 
         "teambuild_store": ['ccm.store', {"name": "jschae2s_teambuild", "url": HBRS_CCM2_DATA_SERVER}],
