@@ -1,20 +1,13 @@
 /**
- * @overview tab layout of ccm component for rendering a menu
- * @author André Kless <andre.kless@web.de.de> 2015-2016, 2018
+ * @overview hbrs layout for a ccm menu component
+ * @author Julian Schäfer <julian.schaefer@smail.inf.h-brs.de> 2019
  * @license The MIT License (MIT)
  */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 #main {
-    /*border: 0.08em solid #aaa;*/
-    /*border-radius: 0.3em;*/
-    /*background-color: transparent;*/
+    font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
     padding: 0.2em;
-
-    /*font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;*/
-    /*font-size: 1em;*/
-    /*font-style: normal;*/
-    /*line-height: 1.4em;*/
-    /*color: #475054;*/
 }
 
 #entries {
@@ -22,25 +15,14 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-
-    /*border: 0.08em solid #aaa;*/
-    /*border-radius: 0.3em;*/
     padding: 0.1em 0.2em 0;
     color: #fff;
-    /*background-color: #ddd;*/
-    /*color: #555;*/
 }
 
 .entry {
     flex-grow: 1;
-
     margin-top: 0.1em;
-    /*border: 0.08em solid #d3d3d3;*/
-    /*border-bottom: 0;*/
-    /*border-radius: 0.3em 0.3em 0 0;*/
     padding: 0.5em 1em;
-
-    /*background-color: #e9e9e9;*/
     text-align: center;
     cursor: pointer;
 
@@ -53,9 +35,6 @@
 
 .entry.selected {
     background-color: #008eca;
-    /*border-color: #aaa;*/
-    /*margin-bottom: -0.08em;*/
-    /*cursor: auto;*/
 }
 
 .entry:hover {

@@ -1,8 +1,9 @@
 /**
- * @overview default layout of ccm component for team building
- * @author André Kless <andre.kless@web.de.de> 2016-2018
+ * @overview hbrs layout of ccm component for team building
+ * @author Julian Schäfer <Julian.Schaefer@smail.inf.h-brs.de> 2019
  * @license The MIT License (MIT)
  */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 button {
   cursor: pointer;
@@ -13,15 +14,10 @@ button {
 }
 
 #element {
-  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-  /*font-size: 1.4rem;*/
-  /*line-height: 1.4rem;*/
-  /*font-weight: 300;*/
-  /*color: #475054;*/
-  /*ont-family: "Source Sans Pro",Helvetica,Arial,sans-serif;*/
-  /*font-size: 1em;*/
-  /*line-height: 1.4em;*/
-  /*font-style: normal;*/
+  font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+  font-style: normal;
+  line-height: 1.4em;
 }
 
 #teams {
@@ -32,8 +28,6 @@ button {
 
 .team {
   margin: 0.5em;
-  /*border: 0.1em solid black;*/
-  /*border-radius: 0.5em;*/
 }
 
 .team .header {
@@ -41,8 +35,6 @@ button {
   align-items: center;
   overflow-x: auto;
   border-bottom: 0.1em solid black;
-  /*border-radius: 0.4em 0.4em 0 0;*/
-  /*background-color: silver;*/
   padding: 0.5em;
   font-weight: bold;
   text-align: center;

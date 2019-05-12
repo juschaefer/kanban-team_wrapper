@@ -1,5 +1,12 @@
+/**
+ * @overview default hbrs layout for Kanban-Board Component
+ * @author Julian Schäfer <Julian.Schaefer@smail.inf.h-brs.de> 2019
+ * @license The MIT License (MIT)
+ */
+
 #element {
     overflow-x: auto;
+    font-family: Arial, sans-serif;
 }
 
 #lanes {
@@ -23,6 +30,10 @@
 .cards {
     border-top: 0.1em solid black;
     padding: 0.5em;
+}
+
+.card {
+    border: 0;
 }
 
 .lane #add {
