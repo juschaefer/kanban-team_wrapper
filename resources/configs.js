@@ -17,19 +17,17 @@ ccm.files['configs.js'] = {
         "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
             "realm": "guest",
             "guest": "jschae2s",
-            // "guest": "sschae2s",
-            // "guest": "cmann2s",
+            // "guest": "lweiss2s",
+            // "guest": "jkraus2s",
+            //
+            // "guest": "tmoell2s",
+            // "guest": "pfried2s",
+            // "guest": "jmahle2s",
+            // "guest": "cdresn2s",
+            //
+            // "guest": "rdrech2s",
+            // "guest": "sfassb2s",
 
-            // "guest": "arindt2s",
-            // "guest": "lmuell2s",
-            // "guest": "tmann2s",
-
-            // "guest": "agersa2s",
-            // "guest": "wschae2s",
-
-            // "guest": "emann2s",
-            // "guest": "rmann2s",
-            // "guest": "mmuster2s",
             "title": "Guest Mode: Please enter any username"
         }],
         "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
@@ -80,19 +78,17 @@ ccm.files['configs.js'] = {
         "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
             "realm": "guest",
             "guest": "jschae2s",
-            // "guest": "sschae2s",
-            // "guest": "cmann2s",
+            // "guest": "lweiss2s",
+            // "guest": "jkraus2s",
+            //
+            // "guest": "tmoell2s",
+            // "guest": "pfried2s",
+            // "guest": "jmahle2s",
+            // "guest": "cdresn2s",
+            //
+            // "guest": "rdrech2s",
+            // "guest": "sfassb2s",
 
-            // "guest": "arindt2s",
-            // "guest": "lmuell2s",
-            // "guest": "tmann2s",
-
-            // "guest": "agersa2s",
-            // "guest": "wschae2s",
-
-            // "guest": "emann2s",
-            // "guest": "rmann2s",
-            // "guest": "mmuster2s",
             "title": "Guest Mode: Please enter any username"
         }],
         "menu": ['ccm.component', 'https://ccmjs.github.io/akless-components/menu/versions/ccm.menu-2.4.3.js'],
