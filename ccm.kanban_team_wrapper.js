@@ -112,7 +112,6 @@
 
                 self.logger && self.logger.log('start', {user: self.user.data().user});
 
-                // const USER = self.user.data();
                 const TEAM = await getMembers(self.user.data().user);
 
                 let team_members = {};
@@ -165,7 +164,7 @@
                         "hash": ["ccm.load", "https://ccmjs.github.io/akless-components/libs/md5/md5.js"],
                         "onfinish": {
                             "store": {
-                                "settings": {"name": self.log_name + "_team-board", "url": self.data_server},
+                                "settings": {"name": self.log_name + "_teambuild", "url": self.data_server},
                             }
                         },
                     }],
@@ -202,8 +201,6 @@
                                 "component": "../kanban_team_card/ccm.kanban_team_card.js",
                                 "config": {
                                     "data": {
-                                        // "store": self.kanban_card_store,
-                                        // "store": ['ccm.store', {"name": "jschae2s_kanban_team_cards", "url": self.data_server}],
                                         "store": ['ccm.store', {"name": self.kanban_card_store.name, "url": self.kanban_card_store.url}],
                                         "key": self.project
                                     },

@@ -16,13 +16,14 @@ ccm.files['configs.js'] = {
 
         "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
             "realm": "guest",
-            "guest": "jschae2s",
+            // "guest": "jschae2s",
             // "guest": "lweiss2s",
             // "guest": "jkraus2s",
             //
             // "guest": "tmoell2s",
             // "guest": "pfried2s",
-            // "guest": "jmahle2s",
+            "guest": "jmahle2s",
+            // "guest": "tmuell2s",
             // "guest": "cdresn2s",
             //
             // "guest": "rdrech2s",
@@ -77,13 +78,14 @@ ccm.files['configs.js'] = {
 
         "user": ["ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.3.1.js", {
             "realm": "guest",
-            "guest": "jschae2s",
+            // "guest": "jschae2s",
             // "guest": "lweiss2s",
             // "guest": "jkraus2s",
             //
             // "guest": "tmoell2s",
             // "guest": "pfried2s",
-            // "guest": "jmahle2s",
+            "guest": "jmahle2s",
+            // "guest": "tmuell2s",
             // "guest": "cdresn2s",
             //
             // "guest": "rdrech2s",
